@@ -39,6 +39,7 @@ function reset() {
   minutes = 0;
   seconds = 0;
   milliseconds = 0;
+  startBtn.classList.remove('disabled');
 }
 startBtn.addEventListener('click', start);
 stopBtn.addEventListener('click', stop);
