@@ -36,7 +36,6 @@ function start() {
 }
 function stop() {
   clearInterval(timer);
-  startBtn.textContent = 'Continue';
   startBtn.classList.remove('disabled');
   stopBtn.classList.add('disabled');
   spinner.style.animationPlayState = 'paused';
@@ -44,7 +43,6 @@ function stop() {
 function reset() {
   clearInterval(timer);
   clock.textContent = '00:00.00';
-  startBtn.textContent = 'Start';
   minutes = 0;
   seconds = 0;
   milliseconds = 0;
