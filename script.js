@@ -4,6 +4,10 @@ const clock = document.querySelector('.clock');
 const startBtn = document.querySelector('.start');
 const stopBtn = document.querySelector('.stop');
 const resetBtn = document.querySelector('.reset');
+const displayContainer = document.querySelector('.display');
+const dot = document.querySelector('.dot');
+const spinner = document.querySelector('.spinner');
+const state = getComputedStyle(spinner).animationPlayState;
 let timer;
 let [minutes, seconds, milliseconds] = [0, 0, 0];
 function display() {
@@ -13,6 +17,8 @@ function display() {
   clock.textContent = `${m}:${s}.${ms}`;
 }
 function start() {
+  startBtn.classList.add('disabled');
+  stopBtn.classList.remove('disabled');
   timer = setInterval(function () {
     milliseconds++;
     if (milliseconds === 100) {
@@ -24,13 +30,16 @@ function start() {
       seconds = 0;
     }
     display();
-    startBtn.classList.add('disabled');
   }, 10);
+  displayContainer.classList.remove('stopped');
+  spinner.style.animationPlayState = state === 'running' ? 'paused' : 'running';
 }
 function stop() {
   clearInterval(timer);
   startBtn.textContent = 'Continue';
   startBtn.classList.remove('disabled');
+  stopBtn.classList.add('disabled');
+  spinner.style.animationPlayState = 'paused';
 }
 function reset() {
   clearInterval(timer);
@@ -39,7 +48,9 @@ function reset() {
   minutes = 0;
   seconds = 0;
   milliseconds = 0;
+  spinner.style.animationPlayState = 'paused';
   startBtn.classList.remove('disabled');
+  stopBtn.classList.add('disabled');
 }
 startBtn.addEventListener('click', start);
 stopBtn.addEventListener('click', stop);

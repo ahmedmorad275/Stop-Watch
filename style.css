@@ -21,6 +21,41 @@ body {
   justify-content: center;
   align-items: center;
 }
+.display {
+  height: 220px;
+  width: 220px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid aqua;
+  position: relative;
+}
+.spinner {
+  position: absolute;
+  inset: 0;
+  transform-origin: center center;
+  animation: spin 4s linear infinite;
+  animation-direction: normal;
+  animation-play-state: paused;
+}
+.dot {
+  --radius: calc(120px - 9px - 3px);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: aqua;
+  transform: translate(-50%, calc(-50% - var(--radius)));
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .clock {
   font-size: 42px;
   transition: all 0.3s ease-in-out;
@@ -29,7 +64,6 @@ body {
 .control {
   display: flex;
   gap: 1rem;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -55,7 +89,7 @@ body {
   color: #eee;
 }
 .reset {
-  background-color: rgb(64, 123, 121);
+  background-color: rgb(123, 106, 64);
   color: #eee;
 }
 .disabled {
